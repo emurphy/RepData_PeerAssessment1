@@ -4,9 +4,6 @@ author: "Emmet Murphy"
 date: "June 6, 2016"
 output: html_document
 ---
-```{r, hide=TRUE}
-library(ggplot2)
-```
 
 ### Load the data
 
@@ -44,8 +41,7 @@ summary(steps_per_day)
 ```{r}
 avg_steps_per_interval <- aggregate(activities$steps, by=list(activities$interval), mean, na.rm=TRUE)
 names(avg_steps_per_interval) = c("interval", "steps") 
-g <- ggplot(avg_steps_per_interval, aes(interval, steps))
-g + geom_line()
+plot(avg_steps_per_interval, type="l")
 ```
 
 2. Which 5-minute interval, on average across all the days in the dataset, contains the maximum number of steps?
