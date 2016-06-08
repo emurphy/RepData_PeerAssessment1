@@ -75,7 +75,9 @@ filled_activities <- filled_activities[order(filled_activities$date, filled_acti
 4. Make a histogram of the total number of steps taken each day and Calculate and report the mean and median total number of steps taken per day. Do these values differ from the estimates from the first part of the assignment? What is the impact of imputing missing data on the estimates of the total daily number of steps?
 
 ```{r}
-#todo
+filled_steps_per_day <- aggregate(filled_activities$steps, by=list(filled_activities$date), sum)
+names(filled_steps_per_day) = c("date", "steps") 
+hist(filled_steps_per_day$steps)
 ```
 
 ### Are there differences in activity patterns between weekdays and weekends?
@@ -83,11 +85,13 @@ filled_activities <- filled_activities[order(filled_activities$date, filled_acti
 1. Create a new factor variable in the dataset with two levels – “weekday” and “weekend” indicating whether a given date is a weekday or weekend day.
 
 ```{r}
-#todo
+filled_activities$date_type <- ifelse( as.POSIXlt(filled_activities$date)$wday %in% c(0,6), 'weekend', 'weekday')
 ```
 
 2. Make a panel plot containing a time series plot (i.e. 𝚝𝚢𝚙𝚎 = "𝚕") of the 5-minute interval (x-axis) and the average number of steps taken, averaged across all weekday days or weekend days (y-axis). See the README file in the GitHub repository to see an example of what this plot should look like using simulated data.
 
 ```{r}
-#todo
+library(ggplot2)
+g <- ggplot(filled_activities, aes(interval, steps))
+g + geom_lifacet_grid(. ~ date_type) + ne() 
 ```
