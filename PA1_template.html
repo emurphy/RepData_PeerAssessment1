@@ -129,7 +129,7 @@ filled_activities &lt;- ddply(activities, ~ interval, transform, steps = impute.
 </ol>
 <pre class="r"><code>filled_activities &lt;- filled_activities[order(filled_activities$date, filled_activities$interval), ] #plyr orders by group so we have to reorder</code></pre>
 <ol start="4" style="list-style-type: decimal">
-<li>Make a histogram of the total number of steps taken each day and Calculate and report the mean and median total number of steps taken per day. Do these values differ from the estimates from the first part of the assignment? What is the impact of imputing missing data on the estimates of the total daily number of steps?</li>
+<li>Make a histogram of the total number of steps taken each day and calculate and report the mean and median total number of steps taken per day. Do these values differ from the estimates from the first part of the assignment? What is the impact of imputing missing data on the estimates of the total daily number of steps?</li>
 </ol>
 <pre class="r"><code>filled_steps_per_day &lt;- aggregate(filled_activities$steps, by=list(filled_activities$date), sum)
 names(filled_steps_per_day) = c(&quot;date&quot;, &quot;steps&quot;) 
@@ -144,7 +144,7 @@ hist(filled_steps_per_day$steps)</code></pre>
 ##  2012-10-05: 1   3rd Qu.:12811  
 ##  2012-10-06: 1   Max.   :21194  
 ##  (Other)   :55</code></pre>
-<p>The histogram above shows that the shape of the distribution is similar, but with more days clustering around the mean.</p>
+<p>The histogram and summary above show that the shape of the distribution is similar, but with a few more days clustered around the mean. Imputing missing values increases the median steps per day by only 1, and without changing the mean. Imputing missing values does not alter the skewness of the distribution, so much as increase the steepness of the curve.</p>
 </div>
 <div id="are-there-differences-in-activity-patterns-between-weekdays-and-weekends" class="section level3">
 <h3>Are there differences in activity patterns between weekdays and weekends?</h3>

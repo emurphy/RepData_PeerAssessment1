@@ -104,7 +104,7 @@ filled_activities <- ddply(activities, ~ interval, transform, steps = impute.mea
 filled_activities <- filled_activities[order(filled_activities$date, filled_activities$interval), ] #plyr orders by group so we have to reorder
 ```
 
-4. Make a histogram of the total number of steps taken each day and Calculate and report the mean and median total number of steps taken per day. Do these values differ from the estimates from the first part of the assignment? What is the impact of imputing missing data on the estimates of the total daily number of steps?  
+4. Make a histogram of the total number of steps taken each day and calculate and report the mean and median total number of steps taken per day. Do these values differ from the estimates from the first part of the assignment? What is the impact of imputing missing data on the estimates of the total daily number of steps?  
 
 
 ```r
@@ -130,7 +130,7 @@ summary(filled_steps_per_day)
 ##  (Other)   :55
 ```
 
-The histogram above shows that the shape of the distribution is similar, but with more days clustering around the mean.  
+The histogram and summary above show that the shape of the distribution is similar, but with a few more days clustered around the mean. Imputing missing values increases the median steps per day by only 1, and without changing the mean. Imputing missing values does not alter the skewness of the distribution, so much as increase the steepness of the curve.
   
 ### Are there differences in activity patterns between weekdays and weekends?
 
