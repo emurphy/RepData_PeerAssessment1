@@ -125,11 +125,13 @@ plot(avg_steps_per_interval, type=&quot;l&quot;)</code></pre>
 <ol start="2" style="list-style-type: decimal">
 <li>Fill in missing values using mean per interval</li>
 </ol>
-<pre class="r"><code># todo</code></pre>
+<pre class="r"><code>library(plyr)
+impute.mean &lt;- function(x) replace(x, is.na(x), mean(x, na.rm = TRUE))
+filled_activities &lt;- ddply(activities, ~ interval, transform, steps = impute.mean(steps))</code></pre>
 <ol start="3" style="list-style-type: decimal">
 <li>Create a new dataset that is equal to the original dataset but with the missing data filled in.</li>
 </ol>
-<pre class="r"><code>#todo</code></pre>
+<pre class="r"><code>filled_activities &lt;- filled_activities[order(filled_activities$date, filled_activities$interval), ] #plyr orders by group so we have to reorder</code></pre>
 <ol start="4" style="list-style-type: decimal">
 <li>Make a histogram of the total number of steps taken each day and Calculate and report the mean and median total number of steps taken per day. Do these values differ from the estimates from the first part of the assignment? What is the impact of imputing missing data on the estimates of the total daily number of steps?</li>
 </ol>
